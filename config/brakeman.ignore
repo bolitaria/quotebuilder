@@ -1,0 +1,26 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "File Access",
+      "warning_code": 2,
+      "fingerprint": "2bedfe81a01893730b342f409c00a7cc1b0fb24bb9b11ebff3f797401e430aa5",
+      "check_name": "SendFile",
+      "message": "Model attribute used in file name",
+      "file": "app/controllers/quotes_controller.rb",
+      "line": 37,
+      "link": "https://brakemanscanner.org/docs/warning_types/file_access/",
+      "code": "send_file(sanitize_pdf_path(Quote.find(params[:id]).pdf_path), :type => \"application/pdf\", :disposition => \"inline\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "QuotesController",
+        "method": "show"
+      },
+      "user_input": "Quote.find(params[:id]).pdf_path",
+      "confidence": "Weak",
+      "note": "Path sanitized with expand_path and prefix check to prevent directory traversal. False positive."
+    }
+  ],
+  "updated": "2026-07-22",
+  "brakeman_version": "8.0.5"
+}
