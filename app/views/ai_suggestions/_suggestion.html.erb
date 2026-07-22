@@ -1,0 +1,12 @@
+<%= turbo_frame_tag "ai_suggestion" do %>
+  <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+    <h3 class="text-lg font-semibold text-blue-800">AI Suggested Configuration</h3>
+    <ul class="list-disc pl-5 mt-2 text-blue-700">
+      <% product.option_groups.each do |group| %>
+        <% value = group.option_values.find_by(id: suggestion[:configuration][group.id.to_s]) %>
+        <li><%= group.name %>: <strong><%= value&.name || "—" %></strong></li>
+      <% end %>
+    </ul>
+    <p class="text-sm text-blue-500 mt-3">Context: <%= params[:context] %></p>
+  </div>
+<% end %>

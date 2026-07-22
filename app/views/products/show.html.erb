@@ -21,6 +21,7 @@
 
       <div class="mt-6 flex space-x-3">
         <%= link_to "Configure", "#", class: "bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600" %>
+  <%= render "ai_suggestions/suggestion_form", product: @product %>
         <%= link_to "Back to Catalog", products_path, class: "bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400", data: { turbo_frame: "product_#{@product.id}" } %>
       </div>
     </div>
