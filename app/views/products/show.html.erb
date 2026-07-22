@@ -21,10 +21,11 @@
 
       <div class="flex flex-col sm:flex-row gap-4 mt-8">
         <%= link_to "Configure", new_product_configuration_path(@product), 
-              class: "flex-1 text-center bg-asafe-yellow text-white px-6 py-3 rounded-lg font-semibold hover:bg-asafe-yellow-hover transition" %>
+              class: "flex-1 text-center bg-asafe-yellow text-white px-6 py-3 rounded-lg font-semibold hover:bg-asafe-yellow-hover transition",
+              data: { turbo: "false" } %>
         <%= link_to "Back to Catalog", products_path, 
               class: "flex-1 text-center bg-gray-200 text-asafe-dark px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition",
-              data: { turbo_frame: "product_#{@product.id}" } %>
+              data: { turbo: "false" } %>
       </div>
 
       <%# AI Suggestion section %>

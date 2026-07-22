@@ -5,23 +5,19 @@ class QuoteGeneratorJob < ApplicationJob
     quote = Quote.find(quote_id)
     return unless quote.status == "draft"
 
-    # Calcular precio final
     quote.total_price = quote.calculate_total_price_from_config
     quote.status = "completed"
+    pdf_filename = "#{quote.id}.pdf"
+    quote.pdf_path = pdf_filename
 
-    # Generar PDF
-    pdf_path = generate_pdf(quote)
-    quote.pdf_path = pdf_path
-
+    generate_pdf(quote, pdf_filename)
     quote.save!
-
-    # Enviar a ERP (simulado)
     ErpService.send_quote(quote)
   end
 
   private
 
-  def generate_pdf(quote)
+  def generate_pdf(quote, filename)
     require 'prawn'
     pdf = Prawn::Document.new
     pdf.text "Quote ##{quote.id}", size: 24, style: :bold
@@ -42,9 +38,8 @@ class QuoteGeneratorJob < ApplicationJob
     end
     pdf.move_down 10
     pdf.text "Total: #{quote.total_price}", size: 16, style: :bold
-    file_path = Rails.root.join("public", "quotes", "#{quote.id}.pdf")
+    file_path = Rails.root.join("public", "quotes", filename)
     FileUtils.mkdir_p(File.dirname(file_path))
     pdf.render_file(file_path)
-    "/quotes/#{quote.id}.pdf"
   end
 end

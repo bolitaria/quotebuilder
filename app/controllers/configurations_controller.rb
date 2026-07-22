@@ -1,14 +1,10 @@
 class ConfigurationsController < ApplicationController
-  before_action :set_product, only: [ :new, :update ]
+  before_action :set_product, only: [:new, :update]
 
   def new
     session[:configuration] = { @product.id.to_s => {} }
     @current_group = @product.option_groups.first
     @selected_values = {}
-    respond_to do |format|
-      format.html
-      format.turbo_stream
-    end
   end
 
   def update
@@ -51,7 +47,7 @@ class ConfigurationsController < ApplicationController
 
   def calculate_total_price(product, selected_values)
     base = product.base_price
-    modifiers = selected_values.sum do |group_id, value_id|
+    modifiers = selected_values.sum do |_group_id, value_id|
       OptionValue.where(id: value_id).pick(:price_modifier) || BigDecimal("0")
     end
     base + modifiers
