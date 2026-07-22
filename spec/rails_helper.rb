@@ -26,3 +26,8 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+# Use headless Chrome in CI
+if ENV['CI']
+  Capybara.javascript_driver = :selenium_headless
+end
