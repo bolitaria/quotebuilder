@@ -12,7 +12,7 @@ RSpec.describe 'AI Suggestion', type: :system, js: true do
   it 'shows a suggested configuration after clicking the button' do
     visit product_path(product)
 
-    click_button 'Suggest Configuration'
+    click_button 'Suggest'
 
     expect(page).to have_selector('#ai_suggestion', text: 'AI Suggested Configuration', wait: 5)
     within '#ai_suggestion' do
