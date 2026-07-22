@@ -1,0 +1,8 @@
+<%= turbo_frame_tag "config_step" do %>
+  <div class="bg-white rounded-lg shadow-md p-6 text-center">
+    <h2 class="text-xl font-semibold text-gray-700 mb-4">Generating Quote...</h2>
+    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-500 mx-auto"></div>
+    <p class="text-gray-500 mt-4">We are preparing your quote. This may take a few seconds.</p>
+    <%= turbo_stream_from "quote_#{quote.id}" %>
+  </div>
+<% end %>

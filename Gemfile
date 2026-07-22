@@ -75,3 +75,6 @@ group :test do
   # HTTP stubbing
   gem "webmock", "~> 3.19"
 end
+
+gem "prawn", "~> 2.5"
+gem "prawn-table", "~> 0.2"

@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: Tests & Security
+    name: Tests, Security & Build
     runs-on: ubuntu-latest
 
     services:
@@ -39,13 +39,19 @@ jobs:
           bundler-cache: true
 
       - name: Setup database
-        run: bin/rails db:create db:schema:load
+        run: bin/rails db:create db:migrate db:seed
+
+      - name: Precompile assets
+        run: bin/rails assets:precompile
 
       - name: Setup Chrome and chromedriver
         uses: browser-actions/setup-chrome@v1
 
       - name: Run tests
         run: bundle exec rspec --format documentation
+
+      - name: Check Solid Queue configuration
+        run: bundle exec solid_queue --help
 
       - name: Run Brakeman security scan
         run: bundle exec brakeman --no-pager
@@ -56,6 +62,5 @@ jobs:
       - name: Run RuboCop linting
         run: bundle exec rubocop --parallel
 
-      # Opcional: construir imagen Docker
-      # - name: Build Docker image
-      #   run: docker build -t quotebuilder .
+      - name: Build Docker image
+        run: docker build -t quotebuilder .
