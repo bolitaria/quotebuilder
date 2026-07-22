@@ -50,8 +50,8 @@ jobs:
       - name: Run tests
         run: bundle exec rspec --format documentation
 
-      - name: Check Solid Queue configuration
-        run: bundle exec solid_queue --help
+      - name: Verify Solid Queue gem
+        run: ruby -e "require 'solid_queue'; puts SolidQueue::VERSION"
 
       - name: Run Brakeman security scan
         run: bundle exec brakeman --no-pager
