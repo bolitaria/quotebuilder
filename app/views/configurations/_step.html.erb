@@ -1,0 +1,20 @@
+<%= turbo_frame_tag "config_step" do %>
+  <div class="bg-white rounded-lg shadow-md p-6">
+    <h2 class="text-xl font-semibold text-gray-700 mb-4"><%= group.name %></h2>
+    <%= form_with url: product_configuration_path(product), method: :patch, local: false do |f| %>
+      <%= f.hidden_field :option_group_id, value: group.id %>
+      <div class="space-y-3">
+        <% group.option_values.each do |value| %>
+          <label class="flex items-center space-x-3 p-3 rounded border border-gray-200 hover:bg-gray-50 cursor-pointer">
+            <%= f.radio_button :option_value_id, value.id, class: "form-radio text-indigo-600" %>
+            <span class="text-gray-800"><%= value.name %></span>
+            <span class="text-gray-500 text-sm"><%= value.price_modifier >= 0 ? "+" : "" %><%= number_to_currency(value.price_modifier) %></span>
+          </label>
+        <% end %>
+      </div>
+      <div class="mt-6">
+        <%= f.submit "Next", class: "bg-indigo-500 text-white px-6 py-2 rounded hover:bg-indigo-600" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
