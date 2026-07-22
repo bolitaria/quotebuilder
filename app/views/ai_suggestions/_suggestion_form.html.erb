@@ -1,0 +1,10 @@
+<div class="mt-8 pt-6 border-t border-asafe-border">
+  <%= form_with url: product_ai_suggestions_path(product), method: :post, local: false, class: "space-y-4" do |f| %>
+    <%= f.label :context, "Get AI suggestion (context)", class: "block text-sm font-medium text-asafe-dark mb-1" %>
+    <div class="flex gap-3">
+      <%= f.text_field :context, placeholder: "e.g., high-traffic warehouse", class: "flex-1 rounded-lg border-asafe-border shadow-sm focus:border-asafe-yellow focus:ring-asafe-yellow px-4 py-3" %>
+      <%= f.submit "Suggest", class: "bg-asafe-yellow text-white px-6 py-3 rounded-lg font-semibold hover:bg-asafe-yellow-hover cursor-pointer transition" %>
+    </div>
+  <% end %>
+  <%= turbo_frame_tag "ai_suggestion" %>
+</div>

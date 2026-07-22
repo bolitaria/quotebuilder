@@ -21,6 +21,17 @@ class Quote < ApplicationRecord
     base + modifiers
   end
 
+  def calculate_total_price_from_config
+    return BigDecimal("0") unless product
+    base = product.base_price
+    return base unless configuration_data.is_a?(Hash) && configuration_data.present?
+
+    modifiers = configuration_data.sum do |_group_id, value_id|
+      OptionValue.where(id: value_id).pick(:price_modifier) || BigDecimal("0")
+    end
+    base + modifiers
+  end
+
   private
 
   def configuration_data_must_be_hash

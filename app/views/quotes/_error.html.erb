@@ -1,0 +1,10 @@
+<%= turbo_frame_tag "config_step" do %>
+  <div class="bg-red-50 rounded-lg p-6">
+    <h2 class="text-lg font-semibold text-red-600">Error generating quote</h2>
+    <ul class="list-disc pl-5 mt-2">
+      <% errors.each do |msg| %>
+        <li class="text-red-500"><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
