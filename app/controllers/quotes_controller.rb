@@ -1,5 +1,5 @@
 class QuotesController < ApplicationController
-  before_action :set_product, only: [:create]
+  before_action :set_product, only: [ :create ]
 
   def create
     config_data = session.dig(:configuration, @product.id.to_s) || {}
@@ -8,7 +8,7 @@ class QuotesController < ApplicationController
       customer_name: params[:customer_name],
       customer_email: params[:customer_email],
       configuration_data: config_data,
-      status: 'draft'
+      status: "draft"
     )
 
     if @quote.save
@@ -32,8 +32,8 @@ class QuotesController < ApplicationController
   def show
     @quote = Quote.find(params[:id])
     file_path = Rails.root.join("public", "quotes", @quote.pdf_path)
-    raise ActionController::RoutingError, 'Not Found' unless File.exist?(file_path)
-    send_file file_path, type: 'application/pdf', disposition: 'inline'
+    raise ActionController::RoutingError, "Not Found" unless File.exist?(file_path)
+    send_file file_path, type: "application/pdf", disposition: "inline"
   end
 
   private

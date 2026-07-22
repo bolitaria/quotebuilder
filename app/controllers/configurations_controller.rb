@@ -1,5 +1,5 @@
 class ConfigurationsController < ApplicationController
-  before_action :set_product, only: [:new, :update]
+  before_action :set_product, only: [ :new, :update ]
 
   def new
     session[:configuration] = { @product.id.to_s => {} }

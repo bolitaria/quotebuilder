@@ -18,7 +18,7 @@ class QuoteGeneratorJob < ApplicationJob
   private
 
   def generate_pdf(quote, filename)
-    require 'prawn'
+    require "prawn"
     pdf = Prawn::Document.new
     pdf.text "Quote ##{quote.id}", size: 24, style: :bold
     pdf.move_down 20
