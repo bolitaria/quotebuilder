@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+gem "dotenv-rails", "~> 3.1"
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.1.3"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
@@ -39,20 +41,37 @@ gem "kamal", require: false
 gem "thruster", require: false
 
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  # Debugging (ya existía)
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 
-  # Audits gems for known security defects (use config/bundler-audit.yml to ignore issues)
+  # Security auditing
   gem "bundler-audit", require: false
-
-  # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 
-  # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
+  # Code style (ya existía)
   gem "rubocop-rails-omakase", require: false
+
+  # Testing framework
+  gem "rspec-rails", "~> 7.0"
+  # Factories and test data
+  gem "factory_bot_rails", "~> 6.4"
+  gem "faker", "~> 3.2"
 end
 
-group :development do
-  # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem "web-console"
+group :test do
+  # System/integration testing
+  gem "capybara", "~> 3.40"
+  gem "selenium-webdriver", "~> 4.10"
+
+  # Additional matchers
+  gem "shoulda-matchers", "~> 6.0"
+
+  # Database cleaner
+  gem "database_cleaner-active_record", "~> 2.1"
+
+  # Code coverage
+  gem "simplecov", require: false
+
+  # HTTP stubbing
+  gem "webmock", "~> 3.19"
 end
