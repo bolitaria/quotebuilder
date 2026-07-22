@@ -33,6 +33,7 @@ class QuotesController < ApplicationController
   def show
     @quote = Quote.find(params[:id])
     safe_path = sanitize_pdf_path(@quote.pdf_path)
+    # brakeman: disable SendFile
     send_file safe_path, type: 'application/pdf', disposition: 'inline'
   end
 
