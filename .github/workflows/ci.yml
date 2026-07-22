@@ -39,7 +39,7 @@ jobs:
           bundler-cache: true
 
       - name: Setup database
-        run: bin/rails db:create db:migrate db:seed
+        run: bin/rails db:create db:migrate
 
       - name: Precompile assets
         run: bin/rails assets:precompile
