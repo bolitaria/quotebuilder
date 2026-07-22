@@ -1,0 +1,28 @@
+<%= turbo_frame_tag "product_#{@product.id}" do %>
+  <div class="container mx-auto px-4 py-8">
+    <div class="bg-white rounded-lg shadow-md p-6 max-w-2xl mx-auto">
+      <h1 class="text-3xl font-bold text-gray-800 mb-4"><%= @product.name %></h1>
+      <p class="text-gray-500 text-sm">Code: <%= @product.code %> | Category: <%= @product.category %></p>
+      <p class="text-3xl font-bold text-indigo-600 my-4"><%= number_to_currency(@product.base_price) %></p>
+
+      <h2 class="text-xl font-semibold text-gray-700 mt-6 mb-2">Options</h2>
+      <ul class="space-y-4">
+        <% @product.option_groups.each do |group| %>
+          <li>
+            <p class="font-medium text-gray-600"><%= group.name %></p>
+            <ul class="list-disc list-inside pl-4">
+              <% group.option_values.each do |value| %>
+                <li class="text-gray-500"><%= value.name %> (<%= number_to_currency(value.price_modifier) %>)</li>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+
+      <div class="mt-6 flex space-x-3">
+        <%= link_to "Configure", "#", class: "bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600" %>
+        <%= link_to "Back to Catalog", products_path, class: "bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400", data: { turbo_frame: "product_#{@product.id}" } %>
+      </div>
+    </div>
+  </div>
+<% end %>
