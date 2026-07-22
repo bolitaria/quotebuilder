@@ -1,30 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Quotebuilder" %></title>
+    <title>QuoteBuilder</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Quotebuilder">
-    <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= yield :head %>
-
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <!-- Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- A‑SAFE brand colors -->
+    <style>
+      .bg-asafe-dark { background-color: #1a1a1a; }
+      .text-asafe-dark { color: #1a1a1a; }
+      .bg-asafe-yellow { background-color: #f2a900; }
+      .text-asafe-yellow { color: #f2a900; }
+      .hover\:bg-asafe-yellow-hover:hover { background-color: #d18e00; }
+      .border-asafe-border { border-color: #e5e7eb; }
+      .bg-asafe-light { background-color: #f3f4f6; }
+      .text-asafe-gray { color: #4b5563; }
+      .focus\:border-asafe-yellow:focus { border-color: #f2a900; }
+      .focus\:ring-asafe-yellow:focus { --tw-ring-color: #f2a900; }
+    </style>
+    <!-- Turbo + Stimulus from unpkg (stable, no build required) -->
+    <script src="https://unpkg.com/@hotwired/turbo@8.0.3/dist/turbo.es2017-umd.js"></script>
+    <script src="https://unpkg.com/@hotwired/stimulus@3.2.2/dist/stimulus.umd.js"></script>
   </head>
-
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="bg-asafe-light text-asafe-dark">
+    <nav class="bg-asafe-dark text-white p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-xl font-bold tracking-tight">QuoteBuilder</h1>
+      </div>
+    </nav>
+    <main class="container mx-auto mt-8 px-4">
       <%= yield %>
     </main>
   </body>

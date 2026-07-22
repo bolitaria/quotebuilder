@@ -42,4 +42,5 @@ Rails.application.configure do
 
   # Execute background jobs immediately (inline) during tests
   config.active_job.queue_adapter = :inline
+  config.public_file_server.enabled = true
 end
