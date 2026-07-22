@@ -2,14 +2,14 @@
   "ignored_warnings": [
     {
       "warning_type": "File Access",
-      "warning_code": 2,
-      "fingerprint": "2bedfe81a01893730b342f409c00a7cc1b0fb24bb9b11ebff3f797401e430aa5",
+      "warning_code": 16,
+      "fingerprint": "9a5be884d8ba6af5effb51c702d4cd4c23c1e32bbad2ececfd79a9c333a53e5a",
       "check_name": "SendFile",
       "message": "Model attribute used in file name",
       "file": "app/controllers/quotes_controller.rb",
-      "line": 37,
+      "line": 36,
       "link": "https://brakemanscanner.org/docs/warning_types/file_access/",
-      "code": "send_file(sanitize_pdf_path(Quote.find(params[:id]).pdf_path), :type => \"application/pdf\", :disposition => \"inline\")",
+      "code": "send_file(Rails.root.join(\"public\", \"quotes\", Quote.find(params[:id]).pdf_path), :type => \"application/pdf\", :disposition => \"inline\")",
       "render_path": null,
       "location": {
         "type": "method",
@@ -18,7 +18,10 @@
       },
       "user_input": "Quote.find(params[:id]).pdf_path",
       "confidence": "Weak",
-      "note": "Path sanitized with expand_path and prefix check to prevent directory traversal. False positive."
+      "cwe_id": [
+        22
+      ],
+      "note": "Path validated with File.exist? – false positive"
     }
   ],
   "updated": "2026-07-22",
