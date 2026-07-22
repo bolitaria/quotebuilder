@@ -191,3 +191,4 @@ Open the browser developer tools (F12) → Console. If you see Turbo is not defi
 Ensure the layout has the unpkg scripts for Turbo and Stimulus.
 
 Restart the server and hard‑refresh.
+
