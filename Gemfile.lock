@@ -356,7 +356,7 @@ GEM
       websocket (~> 1.0)
     shoulda-matchers (6.5.0)
       activesupport (>= 5.2.0)
-    simplecov (1.0.2)
+    simplecov (1.0.3)
     solid_cache (1.0.10)
       activejob (>= 7.2)
       activerecord (>= 7.2)
