@@ -45,7 +45,7 @@ jobs:
         run: bin/rails assets:precompile
 
       - name: Setup Chrome and chromedriver
-        uses: browser-actions/setup-chrome@v1
+        uses: browser-actions/setup-chrome@v2
 
       - name: Run tests
         run: bundle exec rspec --format documentation
