@@ -61,7 +61,7 @@ end
 group :test do
   # System/integration testing
   gem "capybara", "~> 3.40"
-  gem "selenium-webdriver", "~> 4.10"
+  gem "selenium-webdriver", "~> 4.47"
 
   # Additional matchers
   gem "shoulda-matchers", "~> 6.0"
