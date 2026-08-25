@@ -73,7 +73,7 @@ group :test do
   gem "simplecov", require: false
 
   # HTTP stubbing
-  gem "webmock", "~> 3.19"
+  gem "webmock", "~> 3.26"
 end
 
 gem "prawn", "~> 2.5"
